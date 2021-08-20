@@ -1,5 +1,7 @@
 ## Book: Cloud Native Go: Building Reliable Services in Unreliable Environments
 
+## Chapter 1: What Is a “Cloud Native” Application?
+
 ### What is cloud native?
 
 Three components:
@@ -80,3 +82,33 @@ System's Managability is the ease of modifying it's behavior to keep it secure, 
 
 Note: Managability is not maintainability
 
+### Observability
+
+A system is considered observable if the internal states can be inferred from knowledge of its external outputs withoud having to reinstrument or build new code. This is achieved through rich data from the system metrics, logging and tracing.
+
+## Why is Cloud Native a thing?
+
+Cloud native exists because of the current scale of the systems are extra-ordinarily large in both size and the amount of data they process. Consider 100s of 1000s of servers being deployed, maintained and monitored to cope up with the user's ever changing requirements.
+
+
+## Chapter No 2: Why Go Rules the Cloud Native World?
+
+### The Motivation Behind Go
+
+- In September 2007, when the era of multicore systems and distributed environments began, Google decided felt the need of a new language for developing such systems.
+
+- Deveopled by 3 geniuses, master in their craft of designing other languages: Robert Griesemer, Rob Pike, and Ken Thompson.
+
+### Features of the Cloud Native World:
+
+The complexity of writing such systems using other traditional languages caused the code to be unreadable and unavoidable repetitions.
+
+- Low program comprehensionability: Code demanded cleverness over clarity. And as the codebase grew, the mess grew.
+
+- Slow builds: Language compilation and years old unnecessary language grammars caused the builds to run minutes and even hours on big clusters.
+
+- Inefficiency: Due to above slow builds, programmers responded with more fluid, dynamic languages and trading the system efficiency.
+
+- High cost of updates: The incompatibility in even minor versions of language or dependencies caused the updating a pain in the neck.
+
+Over years, people proposed solutions to address these issues but these solutions introduced more complexity instead of decreasing them.
