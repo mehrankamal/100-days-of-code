@@ -112,3 +112,21 @@ The complexity of writing such systems using other traditional languages caused 
 - High cost of updates: The incompatibility in even minor versions of language or dependencies caused the updating a pain in the neck.
 
 Over years, people proposed solutions to address these issues but these solutions introduced more complexity instead of decreasing them.
+
+
+### Summary:
+
+This chapter linked the Golang with the cloud native applications and showed how the Golang's ecosystem provides better tooling for the Cloud Native applications rather than the other languages such as C++, Java, or Python.
+
+Main topics of discussion was following:
+
+- Composititon and Structural Typing: Golang used this type of relations rather being a fully Object Oriented Language which makes it more easier to define object relations and provide interfaces for their implementation
+- Comprehensibility: Go is a minimalist language with 25 keywords and 1 loop type (for only) which encourages clarity over cleverness.
+- CSP-Style Concurrency: Go implements CSP style concurrency which favors to share memory with communicating rather than communicating by sharing memory.
+- Fast Builds: Go builds are faster than many of the mainstream languages. For instance: The whole K8 v1.20.2 takes 45 seconds to build on a 8-core i9 MacBook Pro rather than other languages which may take minutes to hours to compile a system with same complexity on Google's large compilation clusters.
+- Linguistic Stability: As of March, 2012, with Go 1 spec, it is a promise from the Go community that all applications on this spec will run without breaking changes during it's lifetime.
+- Memory Safety: Go provides pointers for memory passing rather than bulky copying of objects but Go does not allow any pointer arithematic which is a cause of major security issues related to buffer overflow attacks etc.
+- Performance: Performance wise Go performs 10-100s time faster than all the interpretted languages and on par with the low level languages such as Rust, C/C++.
+- Static Linking: This type of linking makes the Go programs executable self dependently. Also, does not require any language runtime or other configuration. In fact Go binary can be used to directly create container images without any other dependency.
+- Static Typing: Static Typing is more readable and more easier to work with as the types clarify the semantics of the code rather than the need of adding Docstrings/comments to clarify decisions. This is another step towards the Clarity vs. Cleverness argument and causes many bugs to be fixed and catched early in the development cycle.
+
