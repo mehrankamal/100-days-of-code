@@ -130,3 +130,39 @@ Main topics of discussion was following:
 - Static Linking: This type of linking makes the Go programs executable self dependently. Also, does not require any language runtime or other configuration. In fact Go binary can be used to directly create container images without any other dependency.
 - Static Typing: Static Typing is more readable and more easier to work with as the types clarify the semantics of the code rather than the need of adding Docstrings/comments to clarify decisions. This is another step towards the Clarity vs. Cleverness argument and causes many bugs to be fixed and catched early in the development cycle.
 
+## Chapter 3: Cloud Native Go Constructs
+
+### Summary: 
+
+- Data types:
+  1. Booleans (bool) => true or false
+  2. Numeric - signed (int8,int16,int32,int64), unsigned (uint8,uint16,uint32,uint64), floating (float32,float64), complex(complex64,complex128. e.g. 3.1415i)
+  3. String - (literal -> "hello\nworld!\n" and raw strings -> `Hello<newline here>world!`)
+- Variables:
+  - General Syntax: ```var foo type = expression```
+  - with init: ```var foo int = 42```
+  - multi declarations: ```var foo, bar int = 42, 1302```
+  - with type inference: ```var foo = 42```
+  - mixed multi declarations: ```var foo, bar = 88, "strings"```
+  - without initialization (default zero val init): ```var s string```
+
+Short Variable Declarations: ```var_name := expression```, type is inferred.
+
+- Zero Values: every type has a zero val i.e the 0 byte representation of the value, e.g. integers -> 0, steings -> "" etc.
+
+- The Blank Identifier: Represented by _ (underscore) is used to ignore a value returned from a function of expression. Is used in variable declarations and package imports because of some depedency. Also, if you do not use a variable after declaring it then the program will not compile, go's was of reducing dead and cluttered code, so we can use _ identifier there.
+
+- Constants: As in all other languages, constants are unmodifiable values and are checked on compilation. Must be initialized with declaration to some value, does not intitalize by default to zero values of data types.
+
+- Container Types: Arrays, Slices, and Maps. Has 3 first-class containers.
+
+  - Arrays: Fixed sized containers for one type only. Declaration: ```var a[size]type```
+  - Slices: Dynamic arrays for one type as arrays are. Declaration: ```a := make([]type, size)```. Initialized and declared using the builtin ```make()``` function.
+  - Maps: Key value containers, typically implemented using hash map type of data structure. Declaration: ```a := make(map[key_type]value_type)```. Used builtin ```make()``` for declaration.
+
+
+- Pointers: Pointers are variables to store other variable's memory addresses.
+  - Declaration: ```var p *type = &foo```, here pointer ```p``` points to the address of ```foo```
+  - Dereferencing: ```*p``` provides value in that address.
+  - Initialization: Inititalized to ```nil``` if not provided with an address at the declaration.
+  - Usage: used to avoid unnecessary overhead due to copying objects around.
