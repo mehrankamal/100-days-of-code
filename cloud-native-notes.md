@@ -145,8 +145,7 @@ Main topics of discussion was following:
   - with type inference: ```var foo = 42```
   - mixed multi declarations: ```var foo, bar = 88, "strings"```
   - without initialization (default zero val init): ```var s string```
-
-Short Variable Declarations: ```var_name := expression```, type is inferred.
+  - Short Variable Declarations: ```var_name := expression```, type is inferred.
 
 - Zero Values: every type has a zero val i.e the 0 byte representation of the value, e.g. integers -> 0, steings -> "" etc.
 
@@ -166,3 +165,37 @@ Short Variable Declarations: ```var_name := expression```, type is inferred.
   - Dereferencing: ```*p``` provides value in that address.
   - Initialization: Inititalized to ```nil``` if not provided with an address at the declaration.
   - Usage: used to avoid unnecessary overhead due to copying objects around.
+
+- Control Structures: One of the basic and core building block of programming.
+  - for loop: The one and only looping construct in golang. Can be used as while loop and traditional for loop.
+    - range keyword for iterating over slices and arrays.
+  - if statement: In contrast to other C-style languages, there is no  parentheses. Allows initialization.
+  - switch statement: no parentheses and no fallthrough by default as C does.
+
+- Error Handling: Treated in Go just as another value with built-in error type. There is no try catch here making it less error prone if you miss something.
+
+- Functions: Variadics and Closures: Can return or accept multiple values, or being used as first-class types or anonymoud functions.
+  - C-style declaration
+  - Multiple return values
+  - Allows recurrence
+  - defer keyword: it can be used to schedule function calls before the end of function calling it. Ensures resource release and memory safety. Like atexit builtin for C/C++ languages.
+  - Allows pass by reference using pointers.
+  - Variadic Functions: Functions that allow zero or more trailing arguments as inputs. like the builtin ```fmt.Printf(format string, a ...interface{}) (n int, err error)``` funtion.
+    - variadic operator (...) can be used to define such functions. Behind the scenes slice is used to make it behave as such.
+  - Anonymous Functions and Closures: Functions maybe created within other functions which are then called anonymous functions. Anonymous functions have access to parent scope and have access even after the parent exits, such functions are called closures.
+  - Can be used as return types and argument types.
+ 
+- Structs, Methods, and Interfaces:
+  - Struct: An struct is an aggregation of zero or more fields as a single entity.
+    - A struct can never be ```nil``` instead its zero value is the zero value of all its field.
+    - Fields can be accessed through dot notation as with classes in other languages.
+    - As in many cases pointers to structs are used for passing structs back and on. So, the dereference is done automatically by the Go in case of accessing field values.
+
+  - Methods: Methods are function attached to types (not specifically structs). Declared same as functions are but uses *reciever arguments* before the function name.
+  - Interface: A set of method signatures. Can be used as a contract that a type may satisfy. No explicit satisfaction of interface required. If a type possesses all the methods defined in interface then it implicitly satisfies that interface.
+    - Type assertion: Assert that some interface is a certain concrete type.
+    - empty interface: An interface that has nothing, with no method and data.
+  - Composition with Type Embedding: Go doesn't allow subclassing but allows functionality to be extended using embedding. It allows typed to be embedded within one another, extending the functionalities of the embedded types into the embedding type.
+    - Interface embedding: An interface may require 2 or more interfaces to be implemented. So, we can use other interfaces as field to implement some interface that requires both of their functionality.
+    - Struct embedding: Struct embedding are like same interface embeddings. But in this case struct requires other structs as part.
+    - Promotion: Question arises that why not use addint a struct field instead of composition. The answer to that is the embedded type methods are promoted to embedding type. Thus, making them directly accessable from the embedding type.
