@@ -18,7 +18,7 @@ A kludgy application is still cludgy even if you containerize it and deploy on K
 
 - Started with bulky happy monoliths on a mainframe machine that is accessed using some dumb terminal with no computing power in 1950s.
 - Then comes, in 1980, inexpensive network-connected PC era with some computing power on the hand of user. This led to decoupling systems into three main layers/tiers.
-  
+
   1. Presentation, here comes the client systems and users
   2. Business, here comes the web and applicaion servers
   3. Data, here comes the databases and stores
@@ -59,7 +59,7 @@ There are two types of scaling:
 
 #### When a system is horizontally scalable and when vertically?
 
-It comes down to the state of the system or service. A stateless service is more easily horizontally scaled whereas a stateful applicaions is easily vertically scalable if that can take benefit of added resources. 
+It comes down to the state of the system or service. A stateless service is more easily horizontally scaled whereas a stateful applicaions is easily vertically scalable if that can take benefit of added resources.
 
 ### Loose Coupling:
 
@@ -132,7 +132,7 @@ Main topics of discussion was following:
 
 ## Chapter 3: Cloud Native Go Constructs
 
-### Summary: 
+### Summary:
 
 - Data types:
   1. Booleans (bool) => true or false
@@ -184,7 +184,7 @@ Main topics of discussion was following:
     - variadic operator (...) can be used to define such functions. Behind the scenes slice is used to make it behave as such.
   - Anonymous Functions and Closures: Functions maybe created within other functions which are then called anonymous functions. Anonymous functions have access to parent scope and have access even after the parent exits, such functions are called closures.
   - Can be used as return types and argument types.
- 
+
 - Structs, Methods, and Interfaces:
   - Struct: An struct is an aggregation of zero or more fields as a single entity.
     - A struct can never be ```nil``` instead its zero value is the zero value of all its field.
@@ -199,3 +199,29 @@ Main topics of discussion was following:
     - Interface embedding: An interface may require 2 or more interfaces to be implemented. So, we can use other interfaces as field to implement some interface that requires both of their functionality.
     - Struct embedding: Struct embedding are like same interface embeddings. But in this case struct requires other structs as part.
     - Promotion: Question arises that why not use addint a struct field instead of composition. The answer to that is the embedded type methods are promoted to embedding type. Thus, making them directly accessable from the embedding type.
+
+- Concurrency: Concurrency is defined as being able to execute multiple parts of program at the same time.
+  - Goroutines
+    > Provides application level threads for asynchronous processing or concurrency using `go` keyword.
+    > Syntax: `go func()`
+  - Channels: 
+    > Think of them as pipes for communications between the goroutines. At one end a routine sends data and is recieved by another goroutine at the other end 
+    > Created using the `make` function.
+    > Example Declaration: `ch := make (chan int)` makes a channel for sending and recieving `int` data. 
+    > Sending: `ch <- val`
+    > Recieving: `val = <- ch`
+    - Blocking: By default every channel if *unbuffered* meaning the channel will block any incoming data until the channel is empty i.e. the recieving routine has recieved the data and inversly the recievers block until the sender sends the data.
+    - Buffering: Channels can also be *buffered* meaning we can have a fixed *capacity* queue while initializing. Sends block only when queue is full and recieves block when queue is empty.
+      > Creating a buffered channel:
+      > ```go
+      > myChan := make(chan int, buffsize)
+      > ```
+
+    - Closing channels: Another operation on channels in `close(chanName)` which sets a flag to not expect any more incoming value from the channel.
+      > Caution: Sending on a closed channel will cause `panic` and must be avoided.
+
+    - Looping over channels: Values from a channel can be extractes using `range` keyword until the channel is closed and has buffered values.
+
+  - Select
+    > `select` keyword is synonymous to `switch` but for multiplexing between channels.
+
