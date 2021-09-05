@@ -225,3 +225,47 @@ Main topics of discussion was following:
   - Select
     > `select` keyword is synonymous to `switch` but for multiplexing between channels.
 
+## Chapter 4: Cloud Native Patterns
+
+### Summary:
+
+- Fallacies of Distributed Computing:
+  1. Network is reliable
+  2. Latency is zero
+  3. Bandwidth is infinite
+  4. Network is secure.
+  5. Topology is constant
+  6. There is one admin.
+  7. Transport cost is zero.
+  8. The network is homogeneous
+  9. Services are reliable.
+- Context Package: Provides idioms for carrying deadlines, cancellation signals and request-scoped values between processes. Has `context.Context` interface.
+- What context can do?
+  > It allows cancellation of sub-requests easier to coordinate their cancellation and reduce the amount of wasted time.
+  > When a `Context` is cancelled, all `Context` derived from it are also cancelled but not the parent `Context`s
+
+- Stability Patterns: These patterns are supposed to imporve the services' own stability and stability of the larger system they're part of.
+
+  - Circuit Breaker:
+    > Automatically degrades service functions in responce to likely fault, preventing cascading failures.
+    - Applicability:
+      > This pattern allows a service to detect a failure and to "open the circuit" by temporarily ceasing to execute requests.
+      > For example if a database crashes, the server should be able to detect crash and temporarily open the circuit to avoid flooding logs and errors.
+    - Participants
+      - Circuit: The function that interacts with the service
+      - Breaker: A closure with same function signature as `Circuit`
+
+    - Implementation: The client interacts with the `Breaker` which has two states *open*, and *closed*. In case of open, the breaker forwards requests to `Circuit` unchanges and responses back to the client while in close state, the `Breaker` responds immediately with a meaningful error message.
+    - Sample code: See [here](https://github.com/cloud-native-go/examples/tree/main/ch04)
+
+  - Debounce: Limits the frequency of a function invocation so that only first or last in a cluster of calls is actually performed
+    - Applicability:
+      > This pattern is used to avoid many same type of calls to be performed in a given frame of time. It restricts other calls while only executing the first or last call to a function.
+      > Can provide solution to problems such as The Thundering Herd by rate limiting and clever caching.
+    - Participants:
+      > Circuit: The function to regulate
+      > Debounce: The closure for debounce logic with same function signature as `Circuit`
+
+    - Implementation: The `Debounce` wraps the `Circuit` with the ratelimiting logic. 
+
+    - Sample code: See [here](https://github.com/cloud-native-go/examples/tree/main/ch04)
