@@ -269,3 +269,5 @@ Main topics of discussion was following:
     - Implementation: The `Debounce` wraps the `Circuit` with the ratelimiting logic. 
 
     - Sample code: See [here](https://github.com/cloud-native-go/examples/tree/main/ch04)
+
+  - Retry: Used to transparently
