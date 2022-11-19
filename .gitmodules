@@ -1,0 +1,3 @@
+[submodule "R2/01-articles-api"]
+	path = R2/01-articles-api
+	url = https://github.com/mehrankamal/articles-api
