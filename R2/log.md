@@ -23,7 +23,7 @@ Missed day(s) count = 0
 
 ## Log
 
-### R1D1 - November 19, Saturday, 2022
+### R2D1 - November 19, Saturday, 2022
 
 **Today's Progress:** Got started with a simple Articles API and defined the openapi spec for the APIs I want to implement for Articles.
 
